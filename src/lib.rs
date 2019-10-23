@@ -11,7 +11,8 @@
 //!     42
 //! });
 //!
-//! // join() signals the thread to stop, and then returns its return value.
+//! // stop() signals the thread to stop, and then join returns its return value.
+//! th.stop();
 //! assert_eq!(th.join().unwrap(), 42);
 //!```
 
@@ -44,11 +45,16 @@ where
         }
     }
 
-    /// Signal the Thread to stop, then return it's return value.
-    // TODO: Clean up type signature of Result<T, E> (copied off compile errors)
+    /// Join waits for the thread to exit then returns the return value.
     pub fn join(self) -> Result<T, Box<(dyn Any + Send + 'static)>> {
-        self.stop.store(true, Ordering::Relaxed);
         self.jh.join()
+    }
+
+    /// Signal the Thread to stop, NOTE: This does not ensure the thread has stopped
+    /// but only that the signal has been sent.
+    // TODO: Clean up type signature of Result<T, E> (copied off compile errors)
+    pub fn stop(&self) {
+        self.stop.store(true, Ordering::Relaxed);
     }
 }
 
@@ -65,6 +71,7 @@ mod tests {
             42
         });
 
+        th.stop();
         assert_eq!(th.join().unwrap(), 42);
     }
 }

@@ -1,6 +1,6 @@
 [package]
 name = "stoplight"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Ulisse Mini <ulisse.mini@gmail.com>"]
 description = "Stoplight is a simple library for stoppable tasks/threads."
 edition = "2018"
