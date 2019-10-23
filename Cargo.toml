@@ -1,0 +1,14 @@
+[package]
+name = "stoplight"
+version = "0.1.0"
+authors = ["Ulisse Mini <ulisse.mini@gmail.com>"]
+description = "Stoplight is a simple library for stoppable tasks/threads."
+edition = "2018"
+license = "MIT"
+repository = "https://github.com/UlisseMini/stoplight"
+keywords = ["thread", "task", "cancel", "stop"]
+categories = ["concurrency"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
